@@ -3,13 +3,13 @@
     <head>
         {{- partial "head/head.html" . -}}
         {{- block "head" . -}}{{ end }}
-        <link rel="manifest" href="/webmanifest.json">
+        <link rel="manifest" href="/hugo-website-example-pwa-ios/webmanifest.json">
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="white" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
         <script>
           if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
-              navigator.serviceWorker.register('/service-worker.js')
+              navigator.serviceWorker.register('/hugo-website-example-pwa-ios/service-worker.js')
             });
           }
         </script>
