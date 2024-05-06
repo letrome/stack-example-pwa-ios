@@ -6,6 +6,10 @@
         <link rel="manifest" href="/hugo-website-example-pwa-ios/webmanifest.json">
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="white" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
+        <div id="install-prompt" style="display: none;">
+          <p>Installez cette application sur votre appareil : </p>
+          <button>Installer</button>
+        </div>
         <script>
           if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
@@ -13,6 +17,25 @@
             });
           }
         </script>
+
+<script src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwacompat@0.0.5/pwacompat.min.js"></script>
+<script>
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    // L'application est déjà installée en mode autonome
+    console.log('L\'application est déjà installée.');
+  } else {
+    // Afficher la bannière d'installation
+    window.addEventListener('beforeinstallprompt', (event) => {
+      event.preventDefault(); // Empêche l'affichage de la bannière par défaut
+      const installPrompt = document.getElementById('install-prompt');
+      installPrompt.style.display = 'block'; // Affiche la bannière d'installation
+      installPrompt.addEventListener('click', () => {
+        installPrompt.style.display = 'none'; // Masque la bannière d'installation
+        event.prompt(); // Affiche la bannière d'installation native
+      });
+    });
+  }
+</script>
     </head>
     <body class="{{ block `body-class` . }}{{ end }}">
         {{- partial "head/colorScheme" . -}}
