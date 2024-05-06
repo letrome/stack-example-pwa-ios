@@ -6,10 +6,6 @@
         <link rel="manifest" href="/hugo-website-example-pwa-ios/webmanifest.json">
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="white" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="black" />
-        <div id="install-prompt" style="display: none;">
-          <p>Installez cette application sur votre appareil : </p>
-          <button>Installer</button>
-        </div>
         <script>
           if ('serviceWorker' in navigator) {
             window.addEventListener('load', function () {
@@ -18,6 +14,12 @@
           }
         </script>
 
+    </head>
+    <body class="{{ block `body-class` . }}{{ end }}">
+<div id="install-prompt" style="display: none;">
+          <p>Installez cette application sur votre appareil : </p>
+          <button>Installer</button>
+        </div>
 <script src="https://cdn.jsdelivr.net/npm/@pwabuilder/pwacompat@0.0.5/pwacompat.min.js"></script>
 <script>
   if (window.matchMedia('(display-mode: standalone)').matches) {
@@ -36,8 +38,6 @@
     });
   }
 </script>
-    </head>
-    <body class="{{ block `body-class` . }}{{ end }}">
         {{- partial "head/colorScheme" . -}}
 
         {{/* The container is wider when there's any activated widget */}}
